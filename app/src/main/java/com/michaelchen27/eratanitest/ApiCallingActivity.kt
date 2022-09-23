@@ -2,6 +2,8 @@ package com.michaelchen27.eratanitest
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Button
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
@@ -19,21 +21,32 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-class ApiCallingActivity : AppCompatActivity() {
+class ApiCallingActivity : AppCompatActivity(), View.OnClickListener,
+    BottomSheetRegisterUserFragment.OnRegisterListener {
     private val TAG = ApiCallingActivity::class.simpleName
     private lateinit var tlUsers: TableLayout
+    private lateinit var btnRegisterUser: Button
     private val gson: Gson = Gson()
+
+    private lateinit var bottomSheetRegisterUser: BottomSheetRegisterUserFragment
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_api_calling)
         initView()
+        initInteractions()
         loadData()
     }
 
     private fun initView() {
         tlUsers = findViewById(R.id.tl_users)
+        btnRegisterUser = findViewById(R.id.btn_register_user)
+        bottomSheetRegisterUser = BottomSheetRegisterUserFragment(this)
+    }
+
+    private fun initInteractions() {
+        btnRegisterUser.setOnClickListener(this)
     }
 
     private fun loadData() {
@@ -45,7 +58,7 @@ class ApiCallingActivity : AppCompatActivity() {
 
         val api: UserAPIInterface = requestInterface.create(UserAPIInterface::class.java)
 
-        val call: Call<ResponseBody> = api.getUsers()
+        val call: Call<ResponseBody> = api.getUsers(APIConstant.ACCESS_TOKEN)
 
         call.enqueue(object : Callback<ResponseBody?> {
             override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
@@ -55,8 +68,6 @@ class ApiCallingActivity : AppCompatActivity() {
                         Log.d(TAG, "onResponse: $jsonResponseString")
                         setupTable(jsonResponseString.toString())
                     }
-                } else {
-//                    errToast(response.code())
                 }
             }
 
@@ -108,5 +119,24 @@ class ApiCallingActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.btn_register_user -> {
+                if (!bottomSheetRegisterUser.isAdded) {
+                    bottomSheetRegisterUser.show(
+                        supportFragmentManager,
+                        "BottomSheetRegisterUserFragment"
+                    )
+                }
+
+            }
+        }
+    }
+
+    override fun onRegisterClick() {
+        tlUsers.removeAllViews()
+        loadData()
     }
 }

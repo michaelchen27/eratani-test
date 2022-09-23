@@ -66,7 +66,7 @@ class AnimationActivity : AppCompatActivity(), AnimationListener, Slider.OnChang
 
     override fun onValueChange(slider: Slider, value: Float, fromUser: Boolean) {
         tvBpm.text = value.toInt().toString()
-        zoomIn.startOffset = 1100 - value.toLong()
+        zoomIn.startOffset = (slider.valueTo.toInt() - slider.valueFrom.toInt()).toLong() - value.toLong()
 //        zoomIn.duration = 1100 - value.toLong()
 //        zoomOut.duration = 1100 - value.toLong()
     }

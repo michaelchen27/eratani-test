@@ -5,10 +5,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <ScrollView
         android:id="@+id/layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dip"
         android:fillViewport="true"
         android:scrollbarStyle="outsideInset"
@@ -73,13 +74,17 @@
                         android:text="Status"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
-
                 </TableRow>
-
-
             </TableLayout>
-
-
         </HorizontalScrollView>
     </ScrollView>
+
+    <Button
+        android:id="@+id/btn_register_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/rounded_corners"
+        android:text="+ Register User" />
+
 </LinearLayout>
