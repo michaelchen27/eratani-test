@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Eratani Test</string>
+    <string name="about_eratani">Indonesia is an agrarian country in which most of the citizens work as farmers. The dependency of the quantity and quality of agricultural products on nature conditions makes it hard for the farmers to manage the capital funds. This fact leads to the slow regeneration of young farmers. Based on the data from the Central Bureau of Statistics, only 19.18% of youths in Indonesia worked in the agriculture sector per 2021, and this percentage keeps decreasing even in the middle of the rising number of workers in Indonesia. Eratani as an agri-tech company founded by the children of the nation has realized the urgency of agriculture problems in Indonesia. Eratani embodies a mission to improve Indonesian farmers’ welfare by building a strong agriculture ecosystem and reinforcing the upstream (funding, supply chain management) to downstream (sales and distribution of agricultural products) processes.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
